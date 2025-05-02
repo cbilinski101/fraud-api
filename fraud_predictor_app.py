@@ -32,6 +32,7 @@ category_options = {
     "Grocery (POS)": "category_grocery_pos",
     "Health & Fitness": "category_health_fitness",
     "Home": "category_home",
+    "Kids & Pets": "category_kids_pets",
     "Misc (Net)": "category_misc_net",
     "Misc (POS)": "category_misc_pos",
     "Personal Care": "category_personal_care",
@@ -49,14 +50,23 @@ input_data = {
     "city_pop": city_pop,
     "age": age,
     "day_of_week": day_of_week,
-    "hour_of_day": hour_of_day,
-    "category_kids_pets": 0  # ensure missing feature is included
+    "hour_of_day": hour_of_day
 }
 input_data.update(category_vector)
+
+# Ensure feature order matches training
+input_columns = [
+    "amt", "city_pop", "age", "day_of_week", "hour_of_day",
+    "category_entertainment", "category_food_dining", "category_gas_transport",
+    "category_grocery_net", "category_grocery_pos", "category_health_fitness",
+    "category_home", "category_kids_pets", "category_misc_net", "category_misc_pos",
+    "category_personal_care", "category_shopping_net", "category_shopping_pos", "category_travel"
+]
 
 # Predict
 if st.button("🔍 Predict Fraud"):
     input_df = pd.DataFrame([input_data])
+    input_df = input_df[input_columns]  # Reorder columns
     prediction = model.predict(input_df)[0]
     result = "🔴 Fraudulent Transaction" if prediction == 1 else "🟢 Legitimate Transaction"
     st.success(f"**Prediction Result:** {result}")
