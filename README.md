@@ -2,15 +2,14 @@
 
 An interactive Streamlit dashboard for predicting fraudulent credit card transactions using a trained LightGBM model. Built with Python, Streamlit, and scikit-learn, and deployable via Render.
 
-![Render Deploy](https://img.shields.io/badge/Render.com-Live-blue)
-![Streamlit](https://img.shields.io/badge/Built%20with-Streamlit-orange)
+[![Render Deploy](https://img.shields.io/badge/Render-Live-blue)](https://render.com/)
+[![Streamlit](https://img.shields.io/badge/Built%20with-Streamlit-orange)](https://streamlit.io/)
 
 ---
 
 ## 🚀 Live Demo
 
-🌐 [Launch the App on Render](https://fraud-predictor-dashboard.onrender.com)  
-*(Replace this URL with your actual Render link after deployment)*
+🌐 [Launch the App on Render](https://fraud-api-dwe3.onrender.com) 
 
 ---
 

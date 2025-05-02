@@ -116,7 +116,7 @@ if "slide_index" not in st.session_state:
 col1, col2, col3 = st.columns([1, 5, 1])
 with col2:
     image_path = os.path.join(slide_dir, image_files[st.session_state.slide_index])
-    st.image(Image.open(image_path), caption=f"{image_files[st.session_state.slide_index]}", use_column_width=True)
+    st.image(Image.open(image_path), caption=f"{image_files[st.session_state.slide_index]}", use_container_width=True)
 
 col_left, col_right = st.columns([1, 1])
 with col_left:
