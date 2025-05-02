@@ -2,66 +2,6 @@
 
 An interactive Streamlit dashboard for predicting fraudulent credit card transactions using a trained machine learning model. Built with Python, Streamlit, and scikit-learn, and deployable via Render.
 
-
-
----
-
-## 🚀 Live Demo
-
-
----
-
-## 📊 Features
-
-- 📝 User-friendly input form for transaction data
-- 📦 One dropdown for selecting transaction category
-- 🔍 Instant prediction of **fraudulent** or **legitimate** transactions
-- 📈 Real-time statistics:
-  - Total predictions
-  - Fraud rate
-  - Charts + recent prediction history
-- 🧠 Sidebar with model explanation and usage notes
-
----
-
-## 🔧 How to Deploy (Using GitHub + Render)
-
-1. **Clone this repository** or fork it:
-   ```bash
-   git clone https://github.com/cbilinski101/fraud-api.git
-2. Go to **Render.com** → New Web Service
-3. Connect your GitHub → select this repo
-4. Render auto-detects ```render.yaml```:
-
-- 🧱 Build Command: pip install -r requirements.txt
-
-- ▶️ Start Command:
-
-    ```bash
-    streamlit run fraud_predictor_app.py --server.port 10000 --server.address 0.0.0.0
-    ```
-5. Choose **Free Plan** → click **Deploy**
-
-6. Done! 🎉
-
-## 📁 **Project Structure**
-```bash
-📦 fraud-predictor-dashboard
-├── fraud_predictor_app.py       # Main Streamlit dashboard
-├── optimized_model.joblib       # Pre-trained model
-├── requirements.txt             # Python dependencies
-├── render.yaml                  # Render deployment config
-└── README.md                    # Project overview
-```
-## 📌 **Model Info**
-
-
-
-
-# 🛡️ Fraud Predictor Dashboard
-
-An interactive Streamlit dashboard for predicting fraudulent credit card transactions using a trained machine learning model. Built with Python, Streamlit, and scikit-learn, and deployable via Render.
-
 [![Render Deploy](https://img.shields.io/badge/Render-Live-blue)](https://render.com/)
 [![Streamlit](https://img.shields.io/badge/Built%20with-Streamlit-orange)](https://streamlit.io/)
 
