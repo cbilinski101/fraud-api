@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: fraud-predictor
+    name: fraud-predictor-enhanced
     env: python
     plan: free
     buildCommand: pip install -r requirements.txt
