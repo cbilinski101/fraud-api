@@ -1,3 +1,4 @@
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -5,8 +6,28 @@ import joblib
 import os
 from PIL import Image
 import re
+import time
 
 st.set_page_config(page_title="Fraud Predictor Dashboard", layout="wide")
+
+st.markdown(
+    """
+    <style>
+        html, body, [class*="css"] {
+            background-color: #0e1117;
+            color: #c7d5e0;
+        }
+        .stButton>button {
+            color: white;
+            background-color: #1f77b4;
+        }
+        .stSlider > div {
+            background: #1c1c1c;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 MODEL_PATH = "optimized_model.joblib"
 PRED_HISTORY_FILE = "prediction_history.csv"
@@ -29,7 +50,6 @@ with st.sidebar:
     st.markdown("- Live prediction tracking")
     st.markdown("- PR curve slideshow of model comparisons")
 
-# Inputs
 with st.expander("📝 Transaction Entry"):
     col1, col2 = st.columns(2)
     amt = col1.number_input("💰 Amount", min_value=0.0, value=100.0)
@@ -106,7 +126,6 @@ if os.path.exists(PRED_HISTORY_FILE):
 
 # Slide viewer
 st.markdown("## 🎞️ Model Performance Comparison Slideshow")
-
 slide_dir = "slides"
 
 def natural_sort_key(filename):
@@ -121,6 +140,9 @@ image_files = sorted(
 if "slide_index" not in st.session_state:
     st.session_state.slide_index = 0
 
+auto = st.checkbox("▶️ Auto-play slides", value=False)
+speed = st.slider("⏱️ Slide Interval (sec)", 1, 10, 5) if auto else None
+
 col1, col2, col3 = st.columns([1, 5, 1])
 with col2:
     image_path = os.path.join(slide_dir, image_files[st.session_state.slide_index])
@@ -133,3 +155,29 @@ with col_left:
 with col_right:
     if st.button("Next ➡️") and st.session_state.slide_index < len(image_files) - 1:
         st.session_state.slide_index += 1
+
+if auto:
+    time.sleep(speed)
+    st.session_state.slide_index = (st.session_state.slide_index + 1) % len(image_files)
+    st.experimental_rerun()
+
+# Stats panel
+with st.expander("📊 Comparison: Original Model vs. Model 10 (Optimized LightGBM)", expanded=True):
+    st.markdown("""
+**🚀 Model 10 Significantly Outperformed the Original Model!**
+
+### 📈 ROC Curve Insights
+- ✅ **Model 10 AUC = 0.983**
+- 🟥 Original Model AUC = 0.894
+- 🟢 Model 10 curve stays higher—fewer false negatives.
+
+### 📉 Precision-Recall Insights
+- ⚠️ Model 10 favors **Recall** (catching fraud)
+- 🟥 Original Model slightly better **Precision** in some zones
+- Tradeoff depends on whether you're minimizing **missed fraud** or **false alarms**
+
+### 🏆 Summary:
+- ✔ **Higher AUC (0.983 vs. 0.894)**
+- ✔ **Higher Recall → Catches more fraud**
+- ✔ **Optimized via Bayesian Search**
+    """)
