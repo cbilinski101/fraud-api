@@ -107,19 +107,25 @@ if os.path.exists(PRED_HISTORY_FILE):
 st.markdown("## 🎞️ Model Performance Comparison Slideshow")
 
 slide_dir = "slides"
-image_files = sorted([f for f in os.listdir(slide_dir) if f.endswith(".png")])
+import re
+
+def natural_sort_key(filename):
+    return [int(text) if text.isdigit() else text.lower()
+            for text in re.split(r'(\d+)', filename)]
+
+image_files = sorted(
+    [f for f in os.listdir(slide_dir) if f.endswith(".png")],
+    key=natural_sort_key
+)
 if "slide_index" not in st.session_state:
     st.session_state.slide_index = 0
 
 col1, col2, col3 = st.columns([1, 5, 1])
 with col2:
-    image_path = os.path.join(slide_dir, image_files[st.session_state.slide_index])
-    st.image(Image.open(image_path), caption=f"{image_files[st.session_state.slide_index]}", use_container_width=True)
 
 col_left, col_right = st.columns([1, 1])
 with col_left:
     if st.button("⬅️ Previous") and st.session_state.slide_index > 0:
         st.session_state.slide_index -= 1
 with col_right:
-    if st.button("Next ➡️") and st.session_state.slide_index < len(image_files) - 1:
         st.session_state.slide_index += 1
