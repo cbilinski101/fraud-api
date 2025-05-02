@@ -128,4 +128,5 @@ with col_left:
     if st.button("⬅️ Previous") and st.session_state.slide_index > 0:
         st.session_state.slide_index -= 1
 with col_right:
+    if st.button("Next ➡️") and st.session_state.slide_index < len(image_files) - 1:
         st.session_state.slide_index += 1
