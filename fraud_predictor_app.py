@@ -19,7 +19,6 @@ model = load_model()
 st.title("🛡️ Fraud Detection Dashboard")
 st.caption("Enter transaction details to predict if a transaction is potentially fraudulent.")
 
-# Sidebar explanation
 with st.sidebar:
     st.header("🧠 How It Works")
     st.write("This app uses a trained LightGBM model to predict the probability of fraud.")
@@ -64,7 +63,7 @@ input_data = {
     "age": age,
     "day_of_week": day,
     "hour_of_day": hour,
-    "category_kids_pets": 0  # default missing feature
+    "category_kids_pets": 0
 }
 input_data.update(cat_vector)
 
@@ -89,7 +88,6 @@ if st.button("🔍 Predict Fraud"):
         history = row
     history.to_csv(PRED_HISTORY_FILE, index=False)
 
-# Stats
 if os.path.exists(PRED_HISTORY_FILE):
     stats = pd.read_csv(PRED_HISTORY_FILE)
     fraud = stats["prediction"].sum()
@@ -105,7 +103,7 @@ if os.path.exists(PRED_HISTORY_FILE):
     with st.expander("🧾 Recent Predictions"):
         st.dataframe(stats.tail(10), use_container_width=True)
 
-# 📽 Slide Viewer
+# Slide viewer
 st.markdown("## 🎞️ Model Performance Comparison Slideshow")
 
 slide_dir = "slides"
