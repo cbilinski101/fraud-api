@@ -49,7 +49,8 @@ input_data = {
     "city_pop": city_pop,
     "age": age,
     "day_of_week": day_of_week,
-    "hour_of_day": hour_of_day
+    "hour_of_day": hour_of_day,
+    "category_kids_pets": 0  # ensure missing feature is included
 }
 input_data.update(category_vector)
 
