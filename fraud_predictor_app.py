@@ -10,6 +10,7 @@ import time
 
 st.set_page_config(page_title="Fraud Predictor Dashboard", layout="wide")
 
+# ✅ Dark mode styling
 st.markdown(
     """
     <style>
@@ -23,6 +24,9 @@ st.markdown(
         }
         .stSlider > div {
             background: #1c1c1c;
+        }
+        .stDataFrame, .stTextInput, .stSelectbox, .stSlider {
+            color: #c7d5e0 !important;
         }
     </style>
     """,
@@ -50,6 +54,7 @@ with st.sidebar:
     st.markdown("- Live prediction tracking")
     st.markdown("- PR curve slideshow of model comparisons")
 
+# Input section
 with st.expander("📝 Transaction Entry"):
     col1, col2 = st.columns(2)
     amt = col1.number_input("💰 Amount", min_value=0.0, value=100.0)
@@ -124,7 +129,7 @@ if os.path.exists(PRED_HISTORY_FILE):
     with st.expander("🧾 Recent Predictions"):
         st.dataframe(stats.tail(10), use_container_width=True)
 
-# Slide viewer
+# 🎞️ Slide viewer
 st.markdown("## 🎞️ Model Performance Comparison Slideshow")
 slide_dir = "slides"
 
@@ -161,7 +166,7 @@ if auto:
     st.session_state.slide_index = (st.session_state.slide_index + 1) % len(image_files)
     st.experimental_rerun()
 
-# Stats panel
+# 📊 Model Comparison Panel
 with st.expander("📊 Comparison: Original Model vs. Model 10 (Optimized LightGBM)", expanded=True):
     st.markdown("""
 **🚀 Model 10 Significantly Outperformed the Original Model!**
