@@ -1,7 +1,7 @@
 
 services:
   - type: web
-    name: fraud-predictor-dashboard
+    name: fraud-risk-dashboard
     env: python
     plan: free
     buildCommand: pip install -r requirements.txt
