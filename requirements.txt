@@ -6,3 +6,4 @@ scikit-learn
 lightgbm
 joblib
 matplotlib
+certifi>=2026.10.19
