@@ -9,9 +9,11 @@ An interactive **machine learning dashboard** that predicts fraudulent credit ca
 
 # 🚀 Live Deployment
 
-After deploying your app will be available at:
+**Main maintained application:** [Open Fraud Risk Intelligence Dashboard](https://fraud-risk-dashboard.onrender.com/)
 
-https://your-render-app.onrender.com
+Use this URL for testing, sharing, and future updates. This is the selected main deployment; other Render URLs are duplicate or earlier deployments.
+
+This is a portfolio demonstration. Use fictional transaction data. Prediction history is currently stored on the service instance, shared across visitors, and may reset when Render restarts or redeploys it.
 
 ---
 
@@ -79,3 +81,7 @@ LinkedIn: https://linkedin.com/in/christine-b-19367b31b
 # 📜 License
 
 MIT License
+
+## Dependency maintenance
+
+Direct application dependencies are pinned to versions from the verified October 23, 2026 deployment. Certifi retains a security minimum of `2026.10.19` so builds can receive newer certificate bundles. Transitive dependencies are not fully locked. After dependency changes, verify deployment health and test predictions using fictional data.
